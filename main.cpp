@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QDebug>
 #include <dbmanager.h>
 
 // Set valid db path before first run
@@ -9,12 +10,22 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     DbManager db(path);
-    db.addPerson("A");
-    db.addPerson("B");
-    db.addPerson("C");
-    db.printAllPersons();
-    db.removePerson("C");
-    db.printAllPersons();
-    db.removeAllPersons();
+
+    if (db.isOpen())
+    {
+        db.addPerson("A");
+        db.addPerson("B");
+        db.addPerson("C");
+        db.printAllPersons();
+        db.removePerson("C");
+        db.printAllPersons();
+        db.removeAllPersons();
+        qDebug() << "End";
+    }
+    else
+    {
+        qDebug() << "Database is not open!";
+    }
+
     return a.exec();
 }
