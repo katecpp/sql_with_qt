@@ -36,6 +36,12 @@ public:
     bool isOpen() const;
 
     /**
+     * @brief Creates a new 'people' table if it doesn't already exist
+     * @return true - 'people' table created successfully, false - table not created
+     */
+    bool createTable();
+
+    /**
      * @brief Add person data to db
      * @param name - name of person to add
      * @return true - person added successfully, false - person not added

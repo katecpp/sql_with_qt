@@ -32,6 +32,22 @@ bool DbManager::isOpen() const
     return m_db.isOpen();
 }
 
+bool DbManager::createTable()
+{
+    bool success = false;
+
+    QSqlQuery query;
+    query.prepare("CREATE TABLE people(id INTEGER PRIMARY KEY, name TEXT);");
+
+    if (!query.exec())
+    {
+        qDebug() << "Couldn't create the table 'people': one might already exist.";
+        success = false;
+    }
+
+    return success;
+}
+
 bool DbManager::addPerson(const QString& name)
 {
     bool success = false;

@@ -2,17 +2,17 @@
 #include <QDebug>
 #include <dbmanager.h>
 
-// Set valid db path before first run
-static const QString path = "/path/people.db";
+// Change to any path you wish
+static const QString path = "example.db";
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-
     DbManager db(path);
 
     if (db.isOpen())
     {
+        db.createTable();   // Creates a table if it doens't exist. Otherwise, it will use existing table.
         db.addPerson("A");
         db.addPerson("B");
         db.addPerson("C");
