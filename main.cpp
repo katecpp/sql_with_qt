@@ -3,7 +3,7 @@
 #include <dbmanager.h>
 
 // Set valid db path before first run
-static const QString path = "/path/people.db";
+static const QString path = "example.db";
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 
     if (db.isOpen())
     {
+        db.createTable();
         db.addPerson("A");
         db.addPerson("B");
         db.addPerson("C");
